@@ -9,7 +9,7 @@ correct = False
 def create_code():
     """Function that creates the 4 digit code, using random digits from 1 to 8"""
 
-    global code
+   #global code
     code = [0, 0, 0, 0]
 
     for i in range(4):
@@ -17,6 +17,8 @@ def create_code():
         while value in code:
             value = random.randint(1, 8)  # 8 possible digits
         code[i] = value
+
+    return code
 
 
 def show_instructions():
