@@ -59,6 +59,8 @@ def take_turn():
 
     show_results()
 
+    return correct_digits_and_position #added in
+
 
 def show_code():
     """Show Code that was created to user"""
@@ -66,34 +68,56 @@ def show_code():
     print('The code was: '+str(code))
 
 
-def check_correctness(turns):
+def check_correctness(turns, correct_digits_and_position):
     """Checks correctness of answer and show output to user"""
-
-    global correct
 
     if correct_digits_and_position == 4:
         correct = True
         print('Congratulations! You are a codebreaker!')
     else:
+        correct = False
         print('Turns left: ' + str(12 - turns))
+
+    return correct
+
+
+    # global correct
+
+    # if correct_digits_and_position == 4:
+    #     correct = True
+    #     print('Congratulations! You are a codebreaker!')
+    # else:
+    #     print('Turns left: ' + str(12 - turns))
 
 
 def run_game():
     """Main function for running the game"""
-
-    global correct
-    correct = False
-
-    create_code()
+    
+    code = create_code()
     show_instructions()
-
+    correct = False
+    
     turns = 0
     while not correct and turns < 12:
-        take_turn()
+        correct_digits_and_position = take_turn()
         turns += 1
-        check_correctness(turns)
+        correct = check_correctness(turns, correct_digits_and_position)
 
     show_code()
+
+    # global correct
+    # correct = False
+
+    # create_code()
+    # show_instructions()
+
+    # turns = 0
+    # while not correct and turns < 12:
+    #     take_turn()
+    #     turns += 1
+    #     check_correctness(turns)
+
+    # show_code()
 
 
 if __name__ == "__main__":
