@@ -30,6 +30,13 @@ class TestMastermind(unittest.TestCase):
         self.assertFalse(mastermind.check_correctness(1, 1))
         self.assertFalse(mastermind.check_correctness(1, 2))
         self.assertFalse(mastermind.check_correctness(1, 3))
+
+
+    def test_take_turns(self):
+        with captured_io("123\n12\n1234") as (out, err):
+            response = mastermind.get_answer_input()
+
+        self.assertEqual("Input 4 digit code: \nPlease enter exactly 4 digits.\nInput 4 digit code: \nPlease enter exactly 4 digits.\n", response)
         
 # if __name__ == '__main__':
 #     unittest.main()
