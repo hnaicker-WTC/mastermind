@@ -20,8 +20,12 @@ class TestMastermind(unittest.TestCase):
 
     
     def test_check_correctness(self):
-        code_is_correct = False
 
+        self.assertTrue(mastermind.check_correctness(1, 4))
+        self.assertFalse(mastermind.check_correctness(1, 0))
+        self.assertFalse(mastermind.check_correctness(1, 1))
+        self.assertFalse(mastermind.check_correctness(1, 2))
+        self.assertFalse(mastermind.check_correctness(1, 3))
         
 # if __name__ == '__main__':
 #     unittest.main()
