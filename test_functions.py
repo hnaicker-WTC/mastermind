@@ -20,9 +20,13 @@ class TestMastermind(unittest.TestCase):
 
     
     def test_check_correctness(self):
+        with captured_io("") as (out, err):
+            basic_correctness_check = mastermind.check_correctness(1, 4)
+            easy_check = mastermind.check_correctness(1, 0)
 
-        self.assertTrue(mastermind.check_correctness(1, 4))
-        self.assertFalse(mastermind.check_correctness(1, 0))
+
+        self.assertTrue(basic_correctness_check)
+        self.assertFalse(easy_check)
         self.assertFalse(mastermind.check_correctness(1, 1))
         self.assertFalse(mastermind.check_correctness(1, 2))
         self.assertFalse(mastermind.check_correctness(1, 3))
