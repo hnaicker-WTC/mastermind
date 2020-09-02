@@ -36,17 +36,18 @@ class TestMastermind(unittest.TestCase):
         self.assertFalse(prompt_user_again_check4)
 
     
-    @patch("sys.stdin", StringIO("123\n"))
-    def test_take_turns(self):
+    #@patch("sys.stdin", StringIO("123\n12\n1234\n"))
+    def test_get_user_input(self):
         
-        self.assertEqual(mastermind.get_answer_input(), "123")
-        # self.assertEqual(mastermind.get_answer_input(), "12")
-        # self.assertEqual(mastermind.get_answer_input(), "1234")
+        #self.assertEqual(mastermind.get_answer_input(), "1234")
+        #output = ""
 
-        # with captured_io("123\n12\n1234") as (out, err):
-        #     response = mastermind.get_answer_input()
+        with captured_io(StringIO("123\n12\n1234")) as (out, err):
+            response = mastermind.get_answer_input()
+            output = out.getvalue().strip()
 
-        # self.assertEqual("Input 4 digit code: \nPlease enter exactly 4 digits.\nInput 4 digit code: \nPlease enter exactly 4 digits.\n", response)
-        
+        self.assertEqual("Input 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code:", output)
+        self.assertTrue("1234", response)
+
 # if __name__ == '__main__':
 #     unittest.main()
