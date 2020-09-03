@@ -46,14 +46,16 @@ class TestMastermind(unittest.TestCase):
             output = out.getvalue().strip()
 
         self.assertEqual("Input 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code:", output)
-        self.assertTrue("1234", response)
+        self.assertTrue("1234", response) #checks that only "1234" is returned from function as other inputs are invalid
 
 
     def test_take_turn(self):
         with captured_io("") as (out, err):
-            response = mastermind.take_turn(["1", "2", "3", "4"], "1234")
+            response = mastermind.take_turn("1234", [1, 2, 3, 4])
             output = out.getvalue().strip()
 
+        self.assertEqual("Number of correct digits in correct place:     4\nNumber of correct digits not in correct place: 0", output)
+        self.assertTrue([4, 0], response)
 
 # if __name__ == '__main__':
 #     unittest.main()

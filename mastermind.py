@@ -3,7 +3,6 @@ import random
 def create_code():
     """Function that creates the 4 digit code, using random digits from 1 to 8"""
 
-   #global code
     code = [0, 0, 0, 0]
 
     for i in range(4):
@@ -41,6 +40,7 @@ def take_turn(answer, code):
 
     correct_digits_and_position = 0
     correct_digits_only = 0
+    
     for i in range(len(answer)):
         if code[i] == int(answer[i]):
             correct_digits_and_position += 1
