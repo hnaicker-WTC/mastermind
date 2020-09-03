@@ -56,6 +56,3 @@ class TestMastermind(unittest.TestCase):
 
         self.assertEqual("Number of correct digits in correct place:     4\nNumber of correct digits not in correct place: 0", output)
         self.assertTrue([4, 0], response)
-
-# if __name__ == '__main__':
-#     unittest.main()
