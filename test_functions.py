@@ -40,7 +40,6 @@ class TestMastermind(unittest.TestCase):
     def test_get_user_input(self):
         
         #self.assertEqual(mastermind.get_answer_input(), "1234")
-        #output = ""
 
         with captured_io(StringIO("123\n12\n1234")) as (out, err):
             response = mastermind.get_answer_input()
@@ -48,6 +47,13 @@ class TestMastermind(unittest.TestCase):
 
         self.assertEqual("Input 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code: Please enter exactly 4 digits.\nInput 4 digit code:", output)
         self.assertTrue("1234", response)
+
+
+    def test_take_turn(self):
+        with captured_io("") as (out, err):
+            response = mastermind.take_turn(["1", "2", "3", "4"], "1234")
+            output = out.getvalue().strip()
+
 
 # if __name__ == '__main__':
 #     unittest.main()

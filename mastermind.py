@@ -1,11 +1,5 @@
 import random
 
-# #code = [0, 0, 0, 0]
-# correct_digits_and_position = 0
-# correct_digits_only = 0
-# correct = False
-
-
 def create_code():
     """Function that creates the 4 digit code, using random digits from 1 to 8"""
 
@@ -27,11 +21,10 @@ def show_instructions():
     print('4-digit Code has been set. Digits in range 1 to 8. You have 12 turns to break it.')
 
 
-def show_results():
-    """Show the results from one turn"""
+def show_results(tup_of_clues):
 
-    print('Number of correct digits in correct place:     ' + str(correct_digits_and_position))
-    print('Number of correct digits not in correct place: ' + str(correct_digits_only))
+    print('Number of correct digits in correct place:     ' + str(tup_of_clues[0]))
+    print('Number of correct digits not in correct place: ' + str(tup_of_clues[1]))
 
 
 def get_answer_input():
@@ -45,14 +38,6 @@ def get_answer_input():
 
 
 def take_turn(answer, code):
-    """Handle the logic of taking a turn, which includes:
-       * get answer from user
-       * check if answer is valid
-       * check correctness of answer
-    """
-
-    global correct_digits_and_position
-    global correct_digits_only
 
     correct_digits_and_position = 0
     correct_digits_only = 0
@@ -62,29 +47,12 @@ def take_turn(answer, code):
         elif int(answer[i]) in code:
             correct_digits_only += 1
 
-    show_results()
+    tup_of_clues = (correct_digits_and_position, correct_digits_only)
+    #print (tup_of_clues)
 
-    return correct_digits_and_position #added in
+    show_results(tup_of_clues)
 
-    #original take_turn()
-
-    # global correct_digits_and_position
-    # global correct_digits_only
-
-    # answer = input("Input 4 digit code: ")
-    # while len(answer) < 4 or len(answer) > 4:
-    #     print("Please enter exactly 4 digits.")
-    #     answer = input("Input 4 digit code: ")
-
-    # correct_digits_and_position = 0
-    # correct_digits_only = 0
-    # for i in range(len(answer)):
-    #     if code[i] == int(answer[i]):
-    #         correct_digits_and_position += 1
-    #     elif int(answer[i]) in code:
-    #         correct_digits_only += 1
-
-    # show_results()
+    return tup_of_clues
 
 
 def show_code(code):
@@ -107,7 +75,6 @@ def check_correctness(turns, correct_digits_and_position):
 
 
 def run_game():
-    """Main function for running the game"""
     
     code = create_code()
     #print (code)
@@ -117,26 +84,11 @@ def run_game():
     turns = 0
     while not correct and turns < 12:
         answer = get_answer_input()
-        correct_digits_and_position = take_turn(answer, code)
+        correct_digits_and_position = take_turn(answer, code)[0]
         turns += 1
         correct = check_correctness(turns, correct_digits_and_position)
 
     show_code(code)
-
-    # global correct
-    # correct = False
-
-    # create_code()
-    # show_instructions()
-
-    # turns = 0
-    # while not correct and turns < 12:
-    #     take_turn()
-    #     turns += 1
-    #     check_correctness(turns)
-
-    # show_code()
-
 
 if __name__ == "__main__":
     run_game()
