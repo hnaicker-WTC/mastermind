@@ -48,8 +48,6 @@ def take_turn(answer, code):
             correct_digits_only += 1
 
     tup_of_clues = (correct_digits_and_position, correct_digits_only)
-    #print (tup_of_clues)
-
     show_results(tup_of_clues)
 
     return tup_of_clues
