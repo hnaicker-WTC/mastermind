@@ -1,8 +1,7 @@
-# Problems - Mastermind
 
-* Modify `mastermind.py` to solve the problem as stated in the topic content.
-* You can run the program using the instructions in *To Run* below.
-* You can test technical correctness by running the unit tests as in the section *To Test* below.
+### Description
+
+Basic game of mastermind where user must guess the 4 digit code within 12 turns with clues given. 
 
 ### To Run
 
